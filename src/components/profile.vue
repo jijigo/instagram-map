@@ -1,27 +1,34 @@
 <template>
-  <div class="profile">
+    <div class="profile">
 
-      <img :src="profileData.profile_picture" alt="">
-      {{ profileData.username }}
+    <img :src="profileData.profile_picture" alt="">
 
+    {{ profileData.username }}
 
-      <div id="map">
+    <ul>
+        <li v-for="media in mediaData">
+            <img :src="media.images.thumbnail.url" alt="">
+        </li>
+    </ul>
 
-      </div>
+    <gmap-map
+      :center="{lat:10, lng:10}"
+      :zoom="7"
+      map-type-id="terrain"
+      style="width: 100%; height: 500px"
+    ></gmap-map>
 
-
-      <ul>
-          <li v-for="media in mediaData">
-              <img :src="media.images.thumbnail.url" alt="">
-          </li>
-      </ul>
-
-  </div>
+    </div>
 </template>
 
 <script>
+// import googlemap from './googlemap.vue'
+
 export default {
     name: 'profile',
+    // components : {
+    //     'google-map': googlemap
+    // },
     data () {
         return {
             token: window.localStorage.getItem("token"),
